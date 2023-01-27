@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import './styles.css'
+import logoImage from './assets/devmemory_logo.png'
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+    <div className='container'>
+      <div className='info'>
+        <a className='logoLink' href="">
+          <img src={logoImage} width="200" alt=""/>
         </a>
-      </header>
+        <div className="infoarea">
+
+        </div>
+        
+        
+        <button>Reiniciar</button>
+      </div>
+
+      <div className="gridArea">
+      ...
+      </div>
+      
     </div>
   );
 }
