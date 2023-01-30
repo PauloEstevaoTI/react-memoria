@@ -2,6 +2,9 @@
 
 Este projeto foi feito em aula do curso [B7Web].
 
+ <img src="https://user-images.githubusercontent.com/53940439/215553908-3b0a9c9f-6624-422e-b3fc-46ddce3f6981.png" width= "320px" heigth="180px" />
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
