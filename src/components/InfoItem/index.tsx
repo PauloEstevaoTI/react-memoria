@@ -1,4 +1,4 @@
-import './styles.css'
+import * as C from './styles'
 
 type Props = {
     label: string;
@@ -7,9 +7,10 @@ type Props = {
 
 export const InfoItem = ({ label, value } : Props) => {
     return(
-        <div className='containerInfoItem'>
-            <div className="label">{label}</div>
-            <div className="value">{value}</div>
-        </div>
+        <C.Container>
+            <C.Label>{label}</C.Label>
+            <C.Value>{value}</C.Value>
+        </C.Container>
+       
     );
 }
