@@ -8,9 +8,9 @@ export const Container = styled.div `
     padding: 50px 0;
 
     @media(max-width: 750px){
-        .container {
-            flex-direction: column;
-        }
+       
+        flex-direction: column;
+        
     }
 `
 export const Info = styled.div `
@@ -19,10 +19,10 @@ export const Info = styled.div `
     width: auto;
 
     @media(max-width: 750px){
-        .info{
-            margin-bottom: 50px;
-            align-items: center;
-        }
+        
+        margin-bottom: 50px;
+        align-items: center;
+        
     }
        
 
@@ -35,11 +35,11 @@ export const InfoArea = styled.div `
     margin: 10px 0;
 
     @media(max-width: 750px){
-        .infoArea{
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-        }
+        
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        
     }
 
 `
@@ -50,10 +50,10 @@ export const GridArea = styled.div `
     justify-content: flex-end;
 
     @media(max-width: 750px){
-        .gridArea{
-            justify-content: center;
-            margin: 0 20px;
-        }
+    
+        justify-content: center;
+        margin: 0 20px;
+        
     }
 
 `
@@ -63,6 +63,10 @@ export const Grid = styled.div `
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
+
+    @media(max-width: 750px){
+        grid-template-columns: repeat(3, 1fr)
+    }
 `
 
 

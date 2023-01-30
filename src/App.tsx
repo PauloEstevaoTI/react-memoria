@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { GridItemType } from './types/GridItemType';
 import { Items } from  './data/items'
 import { GridItem } from './components/GridItem';
+import { formatTime } from './helpers/formatTime';
 
 const App = () => {
 
@@ -21,6 +22,63 @@ const App = () => {
   useEffect(()=> {
     resetAndCreateGrid()
   },[])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if(play){
+        setTime(time + 1)
+      }      
+    }, 1000)
+    return () => clearInterval(timer)
+
+  },[play, time])
+
+  // verify if opened are equal
+  useEffect(()=> {
+    if(shownCount === 2 ){
+      let opened = gridItems.filter(item => item.shown === true)
+      
+      if(opened.length === 2 ){
+        // v1 - if both are equal, make every shown permanent
+       
+        if(opened[0].item === opened[1].item){        
+          let tmpGrid = [...gridItems]   
+
+          for(let i in tmpGrid){
+            if(tmpGrid[i].shown){
+              tmpGrid[i].permanentShown = true;
+              tmpGrid[i].shown = false
+            }
+          }
+          setGridItems(tmpGrid);
+          setShownCount(0);
+          
+        }else {   
+          //v2 - if they are NOT equal, close all 'shown'
+         setTimeout(()=> {
+            let tmpGrid = [...gridItems]   
+            for(let i in tmpGrid){
+            tmpGrid[i].shown = false
+          }
+          setGridItems(tmpGrid);
+          setShownCount(0);  
+         },2000)
+            
+        }
+
+    
+
+        setMoveCount(moveCount => moveCount + 1)
+      }
+    }
+  },[shownCount, gridItems])
+
+  //verify if gamer is over
+  useEffect(()=> {
+    if(moveCount > 0 && gridItems.every(item => item.permanentShown === true)){
+      setPlay(false)
+    }
+  },[moveCount, gridItems])
 
   const resetAndCreateGrid = () => {
       //passo 1 resetar o jogo
@@ -62,7 +120,16 @@ const App = () => {
   }
 
   const handleItemClick = (index: number) => {
-    
+    if(play && index !== null && shownCount < 2){
+      let tmpGrid = [...gridItems];
+
+      if(tmpGrid[index].permanentShown === false && tmpGrid[index].shown === false){
+        tmpGrid[index].shown = true;
+        setShownCount(shownCount + 1)
+      }
+
+      setGridItems(tmpGrid);
+    }
   }
 
   return (
@@ -72,8 +139,8 @@ const App = () => {
           <img src={logoImage} width="200" alt=""/>
         </C.LogoLink>
         <C.InfoArea>
-          <InfoItem label="Tempo" value="00:00" />
-          <InfoItem label="movimento" value="0" />
+          <InfoItem label="Tempo" value={formatTime(time)} />
+          <InfoItem label="movimento" value={moveCount.toString()} />
         </C.InfoArea>    
         
         <Button label='Reiniciar' icon={RestartIcon} onClick={resetAndCreateGrid} />

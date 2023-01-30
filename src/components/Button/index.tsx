@@ -1,4 +1,5 @@
-import './styles.css'
+import './styles.ts'
+import * as C from './styles'
 
 type Props = {
     label: string;
@@ -8,13 +9,14 @@ type Props = {
 
 export const Button = ({label, icon, onClick}: Props) => {
     return(
-        <div className='containerButton' onClick={onClick}>
+        <C.Container onClick={onClick}>
             {icon &&
-                <div className='iconArea'>
-                    <img className='iconButton' src={icon} alt="" />
-                </div>
+                <C.IconArea>
+                    <C.IconButton src={icon} alt="" />
+                </C.IconArea>
             }
-            <div className='labelButton'>{label}</div>
-        </div>
+            <C.Label>{label}</C.Label>
+        </C.Container>
+        
     )
 }
